@@ -1,4 +1,4 @@
-# Appare 👋
+# Payme 👋
 
 This is a React Native app designed based on [PayMe](https://dribbble.com/shots/20774179-Payme-Finance-Mobile-App-Detail-Screen) UI on [Dribbble](https://dribbble.com)
 
