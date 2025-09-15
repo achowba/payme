@@ -1,21 +1,29 @@
 import QuickActions from '@/components/home/QuickActions';
 import WalletDetailsContainer from '@/components/home/WalletDetailsContainer';
+import TransactionsList from '@/components/transactions/TransactionsList';
 import { COLORS } from '@/constants/colors.constants';
+import { TRANSACTIONS } from '@/data/transactions.data';
 import { Link } from 'expo-router';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 const HomeScreen = () => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.heroContainer}>
-        <WalletDetailsContainer cardExpiry="02 / 25" walletBalance={12890.00} />
+        <WalletDetailsContainer cardExpiry="02 / 25" walletBalance={12890} />
         <QuickActions />
       </View>
-      <Link href="/(tabs)/(home)/select-contact">Select Contact</Link>
-      <Link href="/(tabs)/(home)/send-money">Send Money</Link>
-      <Link href="/(tabs)/(home)/sending">Sending</Link>
-    </View>
+      <View style={styles.transactionsContainer}>
+        <View style={styles.sectionTitleContainer}>
+          <Text style={styles.sectionTitleText}>Transactions</Text>
+          <Link href="/(tabs)/statistics" asChild>
+            <Text style={styles.seeAllText}>See all</Text>
+          </Link>
+        </View>
+        <TransactionsList transactions={TRANSACTIONS} maximumTransactionsToShow={10} />
+      </View>
+    </ScrollView>
   );
 };
 
@@ -29,6 +37,24 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginBottom: 40,
     padding: 10,
+  },
+  transactionsContainer: {},
+  sectionTitleContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 25,
+    paddingHorizontal: 10,
+  },
+  sectionTitleText: {
+    color: COLORS.dark.text,
+    fontSize: 28,
+    fontWeight: '600',
+  },
+  seeAllText: {
+    color: COLORS.dark.yellow,
+    fontSize: 16,
+    fontWeight: '500',
   },
 });
 

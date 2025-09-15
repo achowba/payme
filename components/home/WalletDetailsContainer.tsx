@@ -12,8 +12,7 @@ type WalletDetailsContainerProps = {
 };
 
 const WalletDetailsContainer = ({ cardExpiry, walletBalance }: WalletDetailsContainerProps) => {
-  const balanceLarge = walletBalance.toString().split('.')[0];
-  const balanceSmall = walletBalance.toFixed(2).split('.')[1];
+  const [balanceLarge, balanceSmall] = walletBalance.toFixed(2).split('.');
 
   return (
     <View style={styles.container}>

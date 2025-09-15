@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.dark.primary,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 20,
+    paddingHorizontal: 15,
+    paddingVertical: 20,
   },
   profileContainer: {
     alignItems: 'center',
