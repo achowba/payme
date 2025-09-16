@@ -1,10 +1,10 @@
-import { ASSETS } from '@/constants/assets.constants';
+import { WALLET_PATTERNS_BG } from '@/constants/assets.constants';
 import { COLORS } from '@/constants/colors.constants';
+import { calculatePowerOfTen } from '@/utils/number.utils';
 import { Image, ImageBackground } from 'expo-image';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { AnimatedRollingNumber } from 'react-native-animated-rolling-numbers';
-import { Easing } from 'react-native-reanimated';
+import { CountUp } from 'use-count-up';
 
 type WalletDetailsContainerProps = {
   cardExpiry: string;
@@ -13,10 +13,11 @@ type WalletDetailsContainerProps = {
 
 const WalletDetailsContainer = ({ cardExpiry, walletBalance }: WalletDetailsContainerProps) => {
   const [balanceLarge, balanceSmall] = walletBalance.toFixed(2).split('.');
+  const start = calculatePowerOfTen(balanceLarge);
 
   return (
     <View style={styles.container}>
-      <ImageBackground source={ASSETS.backgrounds.triangles} contentFit="cover">
+      <ImageBackground source={{ uri: WALLET_PATTERNS_BG }} contentFit="cover">
         <View style={styles.walletDetailsContainer}>
           <View style={styles.cardExpiryContainer}>
             <Text style={[styles.text, styles.walletBalanceText]}>Wallet Balance</Text>
@@ -24,12 +25,16 @@ const WalletDetailsContainer = ({ cardExpiry, walletBalance }: WalletDetailsCont
           </View>
           <View style={styles.balanceContainer}>
             <Text style={[styles.text, styles.balanceTextLarge]}>$</Text>
-            <AnimatedRollingNumber
-              value={parseInt(balanceLarge)}
-              useGrouping
-              textStyle={[styles.text, styles.balanceTextLarge]}
-              spinningAnimationConfig={{ duration: 1500, easing: Easing.bounce }}
-            />
+            <Text style={[styles.text, styles.balanceTextLarge]}>
+              <CountUp
+                start={start}
+                end={parseInt(balanceLarge)}
+                isCounting
+                duration={1}
+                easing="easeInCubic"
+                thousandsSeparator=","
+              />
+            </Text>
             <Text style={[styles.text, styles.balanceTextSmall]}>.{balanceSmall}</Text>
           </View>
           <View style={styles.cardTypeContainer}>

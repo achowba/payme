@@ -4,6 +4,7 @@ import { formatDate } from '@/utils/date.utils';
 import { Image } from 'expo-image';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { CountUp } from 'use-count-up';
 
 type TransactionItemProps = {
   transaction: ITransaction;

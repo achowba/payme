@@ -11,6 +11,7 @@ const SendMoneyLayout = () => {
       <Stack.Screen
         name="index"
         options={{
+          headerTitle: 'Send',
           headerLeft: () => (
             <Pressable onPress={() => router.back()}>
               <Ionicons name="chevron-back" size={30} />
