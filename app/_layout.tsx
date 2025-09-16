@@ -14,7 +14,10 @@ const RootLayout = () => {
   return (
     <View style={{ flex: 1, backgroundColor: COLORS.dark.primary, paddingTop: insets.top }}>
       <StatusBar style="light" />
-      <Stack initialRouteName="(tabs)" screenOptions={{ headerShown: false }} />
+      <Stack initialRouteName="(tabs)" screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="(send-money)" options={{ headerShown: false }} />
+      </Stack>
     </View>
   );
 };

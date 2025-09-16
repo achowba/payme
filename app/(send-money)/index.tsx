@@ -1,10 +1,13 @@
+import { Link } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 const SelectContact = () => {
   return (
     <View>
-      <Text>Select Contact</Text>
+      <Text>
+        <Link href="/set-amount">Set Amount</Link>
+      </Text>
     </View>
   );
 };

@@ -2,15 +2,15 @@ import { TabBarItems } from '@/components/ui/TabBarItems';
 import { Tabs } from 'expo-router';
 
 export const unstable_settings = {
-  initialRouteName: '(home)',
+  initialRouteName: 'index',
 };
 
 const TabsLayout = () => {
   return (
     <Tabs
-      initialRouteName="(home)"
+      initialRouteName="index"
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
         tabBarShowLabel: false,
         tabBarStyle: {
           backgroundColor: '#1F1F1F',

@@ -13,7 +13,7 @@ const QuickActions = () => {
       <QuickActionButton actionName="Top Up" isPrimary>
         <Ionicons name="add" size={40} color="#000000" />
       </QuickActionButton>
-      <QuickActionButton actionName="Send" onPress={() => router.push('/(tabs)/(home)/send-money')}>
+      <QuickActionButton actionName="Send" onPress={() => router.push('/(send-money)')}>
         <Image style={styles.image} source={require('@/assets/images/icons/send-money.png')} />
       </QuickActionButton>
       <QuickActionButton actionName="Receive">
