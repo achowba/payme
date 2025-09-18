@@ -4,7 +4,7 @@ import { Image } from 'expo-image';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const Header = () => {
+const HomeScreenHeader = () => {
   return (
     <View style={styles.container}>
       <View style={styles.profileContainer}>
@@ -77,4 +77,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header;
+export default HomeScreenHeader;

@@ -1,7 +1,7 @@
 import { COLORS } from '@/constants/colors.constants';
 import { Ionicons, MaterialIcons, Octicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
-import Header from '../home/Header';
+import HomeScreenHeader from '../home/Header';
 import TabBarIcon from './TabBarIcon';
 
 export const TabBarItems = [
@@ -9,7 +9,7 @@ export const TabBarItems = [
     name="index"
     key="index"
     options={{
-      header: () => <Header />,
+      header: () => <HomeScreenHeader />,
       tabBarIcon: ({ focused }) => (
         <TabBarIcon focused={focused}>
           <Octicons name="home" size={24} color={focused ? '#FFFFFF' : COLORS.dark.tab.inactive} />

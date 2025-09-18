@@ -1,4 +1,5 @@
 import { COLORS } from '@/constants/colors.constants';
+import { DEFAULT_STYLES } from '@/constants/styles.constants';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -17,7 +18,7 @@ const QuickActionButton = ({
 }: QuickActionButtonProps) => {
   return (
     <Pressable
-      style={({ pressed }) => [styles.container, pressed && styles.pressed]}
+      style={({ pressed }) => [styles.container, pressed && DEFAULT_STYLES.pressed]}
       onPress={onPress!}
     >
       <View style={[styles.childrenContainer, isPrimary && styles.primaryButton]}>{children}</View>
@@ -47,9 +48,6 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     marginTop: 15,
     textAlign: 'center',
-  },
-  pressed: {
-    opacity: 0.75,
   },
 });
 

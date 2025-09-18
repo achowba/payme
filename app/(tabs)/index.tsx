@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   heroContainer: {
-    backgroundColor: '#222222',
+    backgroundColor: COLORS.dark.secondary,
     borderRadius: 30,
     marginBottom: 40,
     padding: 10,

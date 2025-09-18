@@ -11,3 +11,10 @@ export interface IMerchant {
   name: string;
   logo: ImageSourcePropType;
 }
+
+export interface IContact {
+  id: string;
+  firstName: string;
+  lastName: string;
+  photo: ImageSourcePropType | string;
+}
