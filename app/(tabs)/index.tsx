@@ -11,7 +11,7 @@ const HomeScreen = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.heroContainer}>
-        <WalletDetailsContainer cardExpiry="02 / 25" walletBalance={12890} />
+        <WalletDetailsContainer cardExpiry="02 / 25" balance={12890} />
         <QuickActions />
       </View>
       <View style={styles.transactionsContainer}>

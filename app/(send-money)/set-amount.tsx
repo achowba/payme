@@ -1,21 +1,17 @@
+import WalletBalanceText from '@/components/home/WalletBalanceText';
 import { WALLET_PATTERNS_BG } from '@/constants/assets.constants';
 import { COLORS } from '@/constants/colors.constants';
 import { useSelectContact } from '@/hooks/useContactSelect';
-import { calculatePowerOfTen } from '@/utils/number.utils';
 import { Image, ImageBackground } from 'expo-image';
 import { useRouter } from 'expo-router';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { CountUp } from 'use-count-up';
-
-const walletBalance = 12890.0;
 
 const SetAmountScreen = () => {
   const router = useRouter();
+
   const { selectedContact } = useSelectContact();
 
-  const [balanceLarge, balanceSmall] = walletBalance.toFixed(2).split('.');
-  const start = calculatePowerOfTen(balanceLarge);
   const source =
     typeof selectedContact?.photo === 'string'
       ? { uri: selectedContact?.photo }
@@ -30,21 +26,7 @@ const SetAmountScreen = () => {
       <View style={styles.infoContainer}>
         <ImageBackground style={styles.balanceContainer} source={WALLET_PATTERNS_BG}>
           <Text style={[styles.text, styles.balanceLabelText]}>Wallet Balance</Text>
-          <View style={styles.balanceTextContainer}>
-            <Text style={[styles.text, styles.balanceTextLarge]}>$</Text>
-            <Text style={[styles.text, styles.balanceTextLarge]}>
-              <CountUp
-                start={start}
-                end={parseInt(balanceLarge)}
-                isCounting
-                duration={1}
-                easing="easeInCubic"
-                thousandsSeparator=","
-              />
-              .
-            </Text>
-            <Text style={[styles.text, styles.balanceTextSmall]}>{balanceSmall}</Text>
-          </View>
+          <WalletBalanceText balance={12890.0} />
         </ImageBackground>
         <View style={styles.selectedContactContainer}>
           <View style={styles.selectedContactInfoContainer}>

@@ -1,20 +1,16 @@
 import { WALLET_PATTERNS_BG } from '@/constants/assets.constants';
 import { COLORS } from '@/constants/colors.constants';
-import { calculatePowerOfTen } from '@/utils/number.utils';
 import { Image, ImageBackground } from 'expo-image';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { CountUp } from 'use-count-up';
+import WalletBalanceText from './WalletBalanceText';
 
 type WalletDetailsContainerProps = {
   cardExpiry: string;
-  walletBalance: number;
+  balance: number;
 };
 
-const WalletDetailsContainer = ({ cardExpiry, walletBalance }: WalletDetailsContainerProps) => {
-  const [balanceLarge, balanceSmall] = walletBalance.toFixed(2).split('.');
-  const start = calculatePowerOfTen(balanceLarge);
-
+const WalletDetailsContainer = ({ cardExpiry, balance }: WalletDetailsContainerProps) => {
   return (
     <View style={styles.container}>
       <ImageBackground source={WALLET_PATTERNS_BG} contentFit="cover">
@@ -24,18 +20,11 @@ const WalletDetailsContainer = ({ cardExpiry, walletBalance }: WalletDetailsCont
             <Text style={[styles.text, styles.cardExpiryText]}>{cardExpiry}</Text>
           </View>
           <View style={styles.balanceContainer}>
-            <Text style={[styles.text, styles.balanceTextLarge]}>$</Text>
-            <Text style={[styles.text, styles.balanceTextLarge]}>
-              <CountUp
-                start={start}
-                end={parseInt(balanceLarge)}
-                isCounting
-                duration={1}
-                easing="easeInCubic"
-                thousandsSeparator=","
-              />
-            </Text>
-            <Text style={[styles.text, styles.balanceTextSmall]}>.{balanceSmall}</Text>
+            <WalletBalanceText
+              balance={balance}
+              balanceTextLargeStyle={styles.balanceTextLarge}
+              balanceTextSmallStyle={styles.balanceTextSmall}
+            />
           </View>
           <View style={styles.cardTypeContainer}>
             <Text style={[styles.text, styles.cardTypeText]}>Premium Card</Text>
