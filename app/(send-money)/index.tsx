@@ -2,6 +2,7 @@ import ContactList from '@/components/send-money/ContactList';
 import { COLORS } from '@/constants/colors.constants';
 import { DEFAULT_STYLES } from '@/constants/styles.constants';
 import { CONTACTS } from '@/data/contact.data';
+import { useSelectContact } from '@/hooks/useContactSelect';
 import { IContact } from '@/types';
 import { Feather, Ionicons, Octicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
@@ -26,8 +27,16 @@ const SelectContact = () => {
   const [contacts, setContacts] = useState<IContact[]>([]);
   const [isLoadingContacts, setIsLoadingContacts] = useState(true);
 
+  const { selectedContact } = useSelectContact();
+  const isContactSelected = selectedContact !== null;
+
   const selectDestination = () => {
-    router.push('/set-amount');
+    if (!selectedContact) {
+      alert('Please select a contact first.');
+      return;
+    }
+
+    router.push(`/set-amount?contactId=${selectedContact.id}`);
   };
 
   useEffect(() => {
@@ -79,8 +88,10 @@ const SelectContact = () => {
           style={({ pressed }) => [
             styles.destinationItemContainer,
             pressed && DEFAULT_STYLES.pressed,
+            !isContactSelected && styles.disabledDestinationBtn,
           ]}
           onPress={selectDestination}
+          disabled={!isContactSelected}
         >
           <View style={styles.destinationItem}>
             <Feather name="users" size={35} color="#FFFFFF" />
@@ -91,8 +102,10 @@ const SelectContact = () => {
           style={({ pressed }) => [
             styles.destinationItemContainer,
             pressed && DEFAULT_STYLES.pressed,
+            isContactSelected && styles.disabledDestinationBtn,
           ]}
           onPress={selectDestination}
+          disabled={isContactSelected}
         >
           <View style={styles.destinationItem}>
             <Image
@@ -106,8 +119,10 @@ const SelectContact = () => {
           style={({ pressed }) => [
             styles.destinationItemContainer,
             pressed && DEFAULT_STYLES.pressed,
+            isContactSelected && styles.disabledDestinationBtn,
           ]}
           onPress={selectDestination}
+          disabled={isContactSelected}
         >
           <View style={styles.destinationItem}>
             <Ionicons name="scan" size={40} color="#FFFFFF" />
@@ -182,6 +197,9 @@ const styles = StyleSheet.create({
   destinationImage: {
     aspectRatio: 1,
     width: '40%',
+  },
+  disabledDestinationBtn: {
+    opacity: 0.5,
   },
 });
 

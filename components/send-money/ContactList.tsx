@@ -21,7 +21,7 @@ const ContactList = ({
   );
 
   const gap = numberOfFrequentlyAccessedContactsToShow > 2 ? 10 : 5;
-  const justifyContent = contacts.length > 2 ? 'space-between' : 'flex-start';
+  const justifyContent = contacts.length > 3 ? 'space-between' : 'flex-start';
   const itemSpacing = numberOfFrequentlyAccessedContactsToShow > 1 ? 70 : 20;
   const contactWidth = (width - itemSpacing) / numberOfFrequentlyAccessedContactsToShow;
 
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 5,
-    // justifyContent: 'space-between',
+    justifyContent: 'space-between',
   },
   contactItemContainer: {
     marginBottom: 20,

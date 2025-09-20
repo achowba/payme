@@ -374,7 +374,7 @@ export const TRANSACTIONS: ITransaction[] = [
     id: '68c7009dcac1ff3d420fce89',
     amount: -52,
     merchant: {
-      name: "Real-Madrid",
+      name: "Real Madrid",
       logo: require("@/assets/images/logos/Real-Madrid.svg")
     },
     date: new Date("2023-05-14")

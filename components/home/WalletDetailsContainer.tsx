@@ -17,7 +17,7 @@ const WalletDetailsContainer = ({ cardExpiry, walletBalance }: WalletDetailsCont
 
   return (
     <View style={styles.container}>
-      <ImageBackground source={{ uri: WALLET_PATTERNS_BG }} contentFit="cover">
+      <ImageBackground source={WALLET_PATTERNS_BG} contentFit="cover">
         <View style={styles.walletDetailsContainer}>
           <View style={styles.cardExpiryContainer}>
             <Text style={[styles.text, styles.walletBalanceText]}>Wallet Balance</Text>
