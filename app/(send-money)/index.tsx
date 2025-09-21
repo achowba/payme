@@ -28,6 +28,7 @@ const SelectContact = () => {
   const [isLoadingContacts, setIsLoadingContacts] = useState(true);
 
   const { selectedContact } = useSelectContact();
+
   const isContactSelected = selectedContact !== null;
 
   const selectDestination = () => {
@@ -95,8 +96,16 @@ const SelectContact = () => {
         >
           <View style={styles.destinationItem}>
             <Feather name="users" size={35} color="#FFFFFF" />
+            {/* {isContactSelected ? (
+              <Image style={styles.selectedContactImage} source={resolveSource(selectedContact?.photo)} />
+            ) : (
+              <Feather name="users" size={35} color="#FFFFFF" />
+            )} */}
           </View>
-          <Text style={styles.destinationText}>Send to Friend</Text>
+          <Text style={[styles.destinationText, { width: '100%', minWidth: 100, paddingRight: 5 }]}>
+            Send to Friend
+            {/* Send to {selectedContact?.firstName ? selectedContact.firstName : 'Friend'} */}
+          </Text>
         </Pressable>
         <Pressable
           style={({ pressed }) => [
@@ -197,6 +206,10 @@ const styles = StyleSheet.create({
   destinationImage: {
     aspectRatio: 1,
     width: '40%',
+  },
+  selectedContactImage: {
+    aspectRatio: 1,
+    width: '100%',
   },
   disabledDestinationBtn: {
     opacity: 0.5,
