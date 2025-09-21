@@ -14,11 +14,13 @@ type TransferInfoProps = {
   selectedContact: IContact | null;
   showChangeBtn?: boolean;
   walletBalance?: number;
+  initialDisplayValue?: number;
 };
 
 const TransferInfo = ({
   selectedContact,
   showChangeBtn = false,
+  initialDisplayValue,
   walletBalance = WALLET_BALANCE,
 }: TransferInfoProps) => {
   const router = useRouter();
@@ -31,7 +33,7 @@ const TransferInfo = ({
     <View style={styles.infoContainer}>
       <ImageBackground style={styles.balanceContainer} source={WALLET_PATTERNS_BG}>
         <Text style={[styles.text, styles.balanceLabelText]}>Wallet Balance</Text>
-        <WalletBalanceText balance={walletBalance} />
+        <WalletBalanceText balance={walletBalance} initialDisplayValue={initialDisplayValue} />
       </ImageBackground>
       <View style={styles.selectedContactContainer}>
         <View style={styles.selectedContactInfoContainer}>

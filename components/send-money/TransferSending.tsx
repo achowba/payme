@@ -1,17 +1,53 @@
 import { DEFAULT_STYLES } from '@/constants/styles.constants';
-import { Image } from 'expo-image';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import Animated, { FadeInDown, FadeOutDown } from 'react-native-reanimated';
+import Animated, {
+  FadeInDown,
+  FadeOutDown,
+  useAnimatedStyle,
+  useSharedValue,
+  withRepeat,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 
 const TransferSending = () => {
+  const shakeValue = useSharedValue(0);
+
+  const shakeAnimation = () => {
+    shakeValue.value = withRepeat(
+      withSequence(
+        withTiming(-3, { duration: 50 }),
+        withTiming(3, { duration: 50 }),
+        withTiming(0, { duration: 50 })
+      ),
+      -1
+    );
+  };
+
+  useEffect(() => {
+    shakeAnimation();
+  });
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [
+      {
+        translateX: shakeValue.value,
+      },
+      { rotate: '45deg' },
+    ],
+  }));
+
   return (
     <Animated.View style={styles.container} exiting={FadeOutDown.duration(100)}>
       <Animated.View
         style={[DEFAULT_STYLES.transferIconContainer, styles.imageContainer]}
         entering={FadeInDown.duration(300).delay(300)}
       >
-        <Image style={styles.image} source={require('@/assets/images/icons/paper-plane.png')} />
+        <Animated.Image
+          style={[styles.image, animatedStyle]}
+          source={require('@/assets/images/icons/paper-plane.png')}
+        />
       </Animated.View>
       <View style={DEFAULT_STYLES.transferTextContainer}>
         <Animated.Text
@@ -42,8 +78,8 @@ const styles = StyleSheet.create({
   },
   image: {
     aspectRatio: 1,
+    height: '50%',
     marginLeft: 10,
-    transform: [{ rotate: '45deg' }],
     width: '50%',
   },
 });

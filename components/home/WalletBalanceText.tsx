@@ -6,17 +6,19 @@ import { CountUp } from 'use-count-up';
 
 type WalletBalanceTextProps = {
   balance: number;
+  initialDisplayValue?: number;
   balanceTextLargeStyle?: TextStyle | TextStyle[];
   balanceTextSmallStyle?: TextStyle | TextStyle[];
 };
 
 const WalletBalanceText = ({
   balance,
+  initialDisplayValue,
   balanceTextLargeStyle,
   balanceTextSmallStyle,
 }: WalletBalanceTextProps) => {
   const [balanceLarge, balanceSmall] = balance.toFixed(2).split('.');
-  const start = calculatePowerOfTen(balanceLarge);
+  const start = initialDisplayValue ? initialDisplayValue : calculatePowerOfTen(balanceLarge);
 
   const balanceLargeTextStyle = StyleSheet.flatten([
     styles.text,

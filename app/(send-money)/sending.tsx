@@ -26,20 +26,24 @@ const SendingMoneyScreen = () => {
     }, 2000);
   };
 
-  useFocusEffect(() => {
-    sendMoney();
-  });
-
   const onBackToHome = () => {
     router.dismissTo('/(tabs)');
   };
+
+  useFocusEffect(() => {
+    sendMoney();
+  });
 
   const parsedAmount = parseFloat(amount || '0');
   const updatedWalletBalance = isNaN(parsedAmount) ? 0 : WALLET_BALANCE - parsedAmount;
 
   return (
     <View style={styles.container}>
-      <TransferInfo selectedContact={selectedContact} walletBalance={updatedWalletBalance} />
+      <TransferInfo
+        selectedContact={selectedContact}
+        walletBalance={updatedWalletBalance}
+        initialDisplayValue={WALLET_BALANCE}
+      />
       <View style={styles.statusContainer}>
         {isMoneySent ? <TransferSent contact={selectedContact} /> : <TransferSending />}
       </View>
