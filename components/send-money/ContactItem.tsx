@@ -2,6 +2,7 @@ import { COLORS } from '@/constants/colors.constants';
 import { DEFAULT_STYLES } from '@/constants/styles.constants';
 import { useSelectContact } from '@/hooks/useContactSelect';
 import { IContact } from '@/types';
+import { resolveSource } from '@/utils/assets.utils';
 import { FontAwesome6 } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import React from 'react';
@@ -18,7 +19,6 @@ const SendMoneyContactItem = ({ contact, index }: SendMoneyContactProps) => {
 
   const isSelected = selectedContact?.id === contact.id;
   const lastNameInitial = contact.lastName ? contact.lastName.charAt(0).toUpperCase() : '';
-  const source = typeof contact.photo === 'string' ? { uri: contact.photo } : contact.photo;
 
   return (
     <Pressable
@@ -27,7 +27,7 @@ const SendMoneyContactItem = ({ contact, index }: SendMoneyContactProps) => {
     >
       <Animated.View entering={FadeIn.duration(400).delay(index * 100)}>
         <View style={styles.imageContainer}>
-          <Image style={styles.image} source={source} />
+          <Image style={styles.image} source={resolveSource(contact.photo)} />
           {isSelected && (
             <View style={styles.selectedOverlay}>
               <FontAwesome6 name="check" size={35} color="#FFFFFF" />

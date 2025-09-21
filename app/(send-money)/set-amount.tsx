@@ -1,52 +1,87 @@
 import WalletBalanceText from '@/components/home/WalletBalanceText';
+import { NumericKeypad } from '@/components/ui/NumericKeypad';
 import { WALLET_PATTERNS_BG } from '@/constants/assets.constants';
 import { COLORS } from '@/constants/colors.constants';
+import { DEFAULT_STYLES } from '@/constants/styles.constants';
 import { useSelectContact } from '@/hooks/useContactSelect';
+import { resolveSource } from '@/utils/assets.utils';
+import { sanitizeAmount } from '@/utils/number.utils';
 import { Image, ImageBackground } from 'expo-image';
 import { useRouter } from 'expo-router';
-import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 const SetAmountScreen = () => {
   const router = useRouter();
 
+  const [amount, setAmount] = useState('');
   const { selectedContact } = useSelectContact();
-
-  const source =
-    typeof selectedContact?.photo === 'string'
-      ? { uri: selectedContact?.photo }
-      : selectedContact?.photo;
 
   const changeContact = () => {
     router.back();
   };
 
+  const handleNumPadPress = (digit: string) => {
+    if (digit === 'delete') {
+      setAmount((prev: string) => prev.slice(0, -1));
+      return;
+    }
+
+    setAmount((prev: string) => {
+      return sanitizeAmount(prev, digit);
+    });
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.infoContainer}>
-        <ImageBackground style={styles.balanceContainer} source={WALLET_PATTERNS_BG}>
-          <Text style={[styles.text, styles.balanceLabelText]}>Wallet Balance</Text>
-          <WalletBalanceText balance={12890.0} />
-        </ImageBackground>
-        <View style={styles.selectedContactContainer}>
-          <View style={styles.selectedContactInfoContainer}>
-            <View style={styles.imageContainer}>
-              <Image source={source} style={styles.image} />
+      <View>
+        <View style={styles.infoContainer}>
+          <ImageBackground style={styles.balanceContainer} source={WALLET_PATTERNS_BG}>
+            <Text style={[styles.text, styles.balanceLabelText]}>Wallet Balance</Text>
+            <WalletBalanceText balance={12890.0} />
+          </ImageBackground>
+          <View style={styles.selectedContactContainer}>
+            <View style={styles.selectedContactInfoContainer}>
+              <View style={styles.imageContainer}>
+                <Image source={resolveSource(selectedContact?.photo)} style={styles.image} />
+              </View>
+              <View>
+                <Text style={[styles.text, styles.selectedContactNameText]}>
+                  {selectedContact?.firstName} {selectedContact?.lastName}
+                </Text>
+                <Text style={[styles.text, styles.selectedContactCardInfoText]}>
+                  Payme - **** **** **** 9839
+                </Text>
+              </View>
             </View>
-            <View>
-              <Text style={[styles.text, styles.selectedContactNameText]}>
-                {selectedContact?.firstName} {selectedContact?.lastName}
-              </Text>
-              <Text style={[styles.text, styles.selectedContactCardInfoText]}>
-                Payme - **** **** **** 9839
-              </Text>
-            </View>
+            <Pressable
+              style={({ pressed }) => pressed && DEFAULT_STYLES.pressed}
+              onPress={changeContact}
+            >
+              <Text style={styles.changeContactBtnText}>Change</Text>
+            </Pressable>
           </View>
-
-          <Pressable style={styles.changeContactBtn} onPress={changeContact}>
-            <Text style={styles.changeContactBtnText}>Change</Text>
-          </Pressable>
         </View>
+        <View style={styles.amountInputContainer}>
+          <Text style={styles.currencyText}>$</Text>
+          <TextInput
+            style={styles.amountInputField}
+            value={amount}
+            // onChangeText={handleAmountInputChange}
+            keyboardType="number-pad"
+            selectionColor={COLORS.dark.yellow}
+          />
+        </View>
+        <View style={styles.numPadContainer}>
+          <NumericKeypad onPress={handleNumPadPress} />
+        </View>
+      </View>
+      <View style={styles.sendMoneyBtnContainer}>
+        <Pressable
+          style={({ pressed }) => [styles.sendMoneyBtn, pressed && DEFAULT_STYLES.pressed]}
+        >
+          <Text style={styles.sendMoneyBtnText}>Send Money</Text>
+        </Pressable>
       </View>
     </View>
   );
@@ -54,6 +89,7 @@ const SetAmountScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     padding: 2,
   },
   infoContainer: {
@@ -78,24 +114,12 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginBottom: 15,
   },
-  balanceTextContainer: {
-    alignItems: 'flex-end',
-    flexDirection: 'row',
-  },
-  balanceTextLarge: {
-    fontSize: 55,
-    fontWeight: '600',
-  },
-  balanceTextSmall: {
-    bottom: 5,
-    fontSize: 25,
-  },
   selectedContactContainer: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 10,
     paddingBottom: 10,
+    paddingHorizontal: 10,
   },
   selectedContactInfoContainer: {
     alignItems: 'center',
@@ -122,18 +146,53 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     letterSpacing: 0.2,
   },
-  changeContactBtn: {},
   changeContactBtnText: {
     color: COLORS.dark.yellow,
     fontSize: 16,
     fontWeight: '500',
   },
-  amountInputContainer: {},
-  amountInput: {},
-  amountInputBtn: {},
-  amountInputBtnText: {},
-  sendMoneyBtn: {},
-  sendMoneyBtnText: {},
+  amountInputContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginHorizontal: 35,
+    paddingTop: 5,
+  },
+  currencyText: {
+    color: `#707070`,
+    fontSize: 50,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  amountInputField: {
+    color: COLORS.dark.text,
+    fontSize: 50,
+    fontWeight: '600',
+  },
+  numPadContainer: {
+    paddingTop: 10,
+  },
+  sendMoneyBtnContainer: {
+    alignItems: 'center',
+    bottom: 10,
+    left: 0,
+    padding: 10,
+    position: 'absolute',
+    right: 0,
+  },
+  sendMoneyBtn: {
+    backgroundColor: COLORS.dark.purple,
+    borderRadius: 100,
+    padding: 30,
+    textAlign: 'center',
+    width: '100%',
+  },
+  sendMoneyBtnText: {
+    color: COLORS.dark.text,
+    fontSize: 20,
+    fontWeight: '500',
+    textAlign: 'center',
+  },
 });
 
 export default SetAmountScreen;
