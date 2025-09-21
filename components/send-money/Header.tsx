@@ -6,14 +6,24 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 type SendMoneyScreenHeaderProps = {
   pageTitle: string;
+  onBackPress?: () => void;
 };
 
-const SendMoneyScreenHeader = ({ pageTitle }: SendMoneyScreenHeaderProps) => {
+const SendMoneyScreenHeader = ({ pageTitle, onBackPress }: SendMoneyScreenHeaderProps) => {
   const router = useRouter();
+
+  const onBack = () => {
+    if (onBackPress) {
+      onBackPress();
+      return;
+    }
+
+    router.back();
+  };
 
   return (
     <View style={styles.container}>
-      <Pressable style={styles.headerIconContainer} onPress={() => router.back()}>
+      <Pressable style={styles.headerIconContainer} onPress={onBack}>
         <Ionicons name="chevron-back" size={22} color="#FFFFFF" />
       </Pressable>
       <Text style={styles.headerTitleText}>{pageTitle}</Text>

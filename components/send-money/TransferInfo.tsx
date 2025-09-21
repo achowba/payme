@@ -1,5 +1,6 @@
 import { WALLET_PATTERNS_BG } from '@/constants/assets.constants';
 import { COLORS } from '@/constants/colors.constants';
+import { WALLET_BALANCE } from '@/constants/money.constants';
 import { DEFAULT_STYLES } from '@/constants/styles.constants';
 import { IContact } from '@/types';
 import { resolveSource } from '@/utils/assets.utils';
@@ -12,9 +13,14 @@ import WalletBalanceText from '../home/WalletBalanceText';
 type TransferInfoProps = {
   selectedContact: IContact | null;
   showChangeBtn?: boolean;
+  walletBalance?: number;
 };
 
-const TransferInfo = ({ selectedContact, showChangeBtn = false }: TransferInfoProps) => {
+const TransferInfo = ({
+  selectedContact,
+  showChangeBtn = false,
+  walletBalance = WALLET_BALANCE,
+}: TransferInfoProps) => {
   const router = useRouter();
 
   const onChangeContact = () => {
@@ -25,7 +31,7 @@ const TransferInfo = ({ selectedContact, showChangeBtn = false }: TransferInfoPr
     <View style={styles.infoContainer}>
       <ImageBackground style={styles.balanceContainer} source={WALLET_PATTERNS_BG}>
         <Text style={[styles.text, styles.balanceLabelText]}>Wallet Balance</Text>
-        <WalletBalanceText balance={12890.0} />
+        <WalletBalanceText balance={walletBalance} />
       </ImageBackground>
       <View style={styles.selectedContactContainer}>
         <View style={styles.selectedContactInfoContainer}>

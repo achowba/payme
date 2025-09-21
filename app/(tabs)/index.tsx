@@ -2,6 +2,7 @@ import QuickActions from '@/components/home/QuickActions';
 import WalletDetailsContainer from '@/components/home/WalletDetailsContainer';
 import TransactionsList from '@/components/transactions/TransactionsList';
 import { COLORS } from '@/constants/colors.constants';
+import { WALLET_BALANCE } from '@/constants/money.constants';
 import { TRANSACTIONS } from '@/data/transactions.data';
 import { Link } from 'expo-router';
 import React from 'react';
@@ -11,7 +12,7 @@ const HomeScreen = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.heroContainer}>
-        <WalletDetailsContainer cardExpiry="02 / 25" balance={12890} />
+        <WalletDetailsContainer cardExpiry="02 / 25" balance={WALLET_BALANCE} />
         <QuickActions />
       </View>
       <View style={styles.transactionsContainer}>

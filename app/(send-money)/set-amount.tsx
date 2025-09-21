@@ -1,12 +1,14 @@
 import TransferInfo from '@/components/send-money/TransferInfo';
+import ButtonPrimary from '@/components/ui/ButtonPrimary';
 import { NumericKeypad } from '@/components/ui/NumericKeypad';
 import { COLORS } from '@/constants/colors.constants';
-import { DEFAULT_STYLES } from '@/constants/styles.constants';
+import { WALLET_BALANCE } from '@/constants/money.constants';
 import { useSelectContact } from '@/hooks/useContactSelect';
 import { sanitizeAmount } from '@/utils/number.utils';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
+import Animated, { FadeInDown, SlideInDown } from 'react-native-reanimated';
 
 const SetAmountScreen = () => {
   const router = useRouter();
@@ -33,7 +35,12 @@ const SetAmountScreen = () => {
       return;
     }
 
-    router.push('/sending');
+    if (numericAmount > WALLET_BALANCE) {
+      alert('Insufficient wallet balance.');
+      return;
+    }
+
+    router.push(`/sending?amount=${numericAmount}`);
   };
 
   return (
@@ -53,14 +60,13 @@ const SetAmountScreen = () => {
           <NumericKeypad onPress={onNumericKeypadPress} />
         </View>
       </View>
-      <View style={styles.sendMoneyBtnContainer}>
-        <Pressable
-          onPress={onSendMoney}
-          style={({ pressed }) => [styles.sendMoneyBtn, pressed && DEFAULT_STYLES.pressed]}
-        >
-          <Text style={styles.sendMoneyBtnText}>Send Money</Text>
-        </Pressable>
-      </View>
+      <Animated.View
+        style={styles.sendMoneyBtnContainer}
+        entering={FadeInDown.duration(300).delay(500)}
+        exiting={SlideInDown.duration(300).delay(500)}
+      >
+        <ButtonPrimary onPress={onSendMoney}>Send Money</ButtonPrimary>
+      </Animated.View>
     </View>
   );
 };
@@ -98,19 +104,6 @@ const styles = StyleSheet.create({
     padding: 10,
     position: 'absolute',
     right: 0,
-  },
-  sendMoneyBtn: {
-    backgroundColor: COLORS.dark.purple,
-    borderRadius: 100,
-    padding: 30,
-    textAlign: 'center',
-    width: '100%',
-  },
-  sendMoneyBtnText: {
-    color: COLORS.dark.text,
-    fontSize: 20,
-    fontWeight: '500',
-    textAlign: 'center',
   },
 });
 

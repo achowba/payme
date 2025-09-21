@@ -1,14 +1,10 @@
 import SendMoneyScreenHeader from '@/components/send-money/Header';
 import { COLORS } from '@/constants/colors.constants';
 import { SelectContactProvider } from '@/store/SelectContactContext';
-import { Ionicons } from '@expo/vector-icons';
-import { Stack, useRouter } from 'expo-router';
-import React from 'react';
-import { Pressable, StyleSheet } from 'react-native';
+import { Stack } from 'expo-router';
+import { StyleSheet } from 'react-native';
 
 const SendMoneyLayout = () => {
-  const router = useRouter();
-
   return (
     <SelectContactProvider>
       <Stack
@@ -24,11 +20,6 @@ const SendMoneyLayout = () => {
           name="index"
           options={{
             header: () => <SendMoneyScreenHeader pageTitle="Send" />,
-            headerLeft: () => (
-              <Pressable onPress={() => router.back()}>
-                <Ionicons name="chevron-back" size={30} />
-              </Pressable>
-            ),
           }}
         />
         <Stack.Screen
@@ -37,7 +28,12 @@ const SendMoneyLayout = () => {
             header: () => <SendMoneyScreenHeader pageTitle="Send" />,
           }}
         />
-        <Stack.Screen name="sending" />
+        <Stack.Screen
+          name="sending"
+          options={{
+            header: () => <SendMoneyScreenHeader pageTitle="Sending" />,
+          }}
+        />
       </Stack>
     </SelectContactProvider>
   );
