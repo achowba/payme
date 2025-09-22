@@ -19,7 +19,6 @@ export interface IContact {
   photo: ImageSourcePropType | string;
 }
 
-
 export interface ICard {
   id: string;
   expiry: string;
@@ -27,4 +26,11 @@ export interface ICard {
   number: string;
   provider: 'Mastercard' | 'Visa';
   category: string;
+}
+
+export interface ICardType {
+  id: string;
+  title: string;
+  description: string;
+  color: string;
 }
