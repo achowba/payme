@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 
 const CardDetailsScreen = () => {
   const router = useRouter();
@@ -19,9 +20,9 @@ const CardDetailsScreen = () => {
       <View style={styles.walletContainer}>
         <Text style={styles.balanceLabelText}>Wallet Balance</Text>
         <WalletBalanceText />
-        <View style={styles.cardDetailsContainer}>
+        <Animated.View style={styles.cardDetailsContainer} entering={FadeInDown.duration(200)}>
           <Card cardDetails={CARD} />
-        </View>
+        </Animated.View>
       </View>
       <View style={styles.addCardBtnContainer}>
         <Pressable style={styles.addCardBtn} onPress={onAddNewCard}>

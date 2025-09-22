@@ -3,6 +3,7 @@ import { COLORS } from '@/constants/colors.constants';
 import { Image, ImageBackground } from 'expo-image';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 import WalletBalanceText from './WalletBalanceText';
 
 type WalletDetailsContainerProps = {
@@ -12,7 +13,7 @@ type WalletDetailsContainerProps = {
 
 const WalletDetailsContainer = ({ cardExpiry, balance }: WalletDetailsContainerProps) => {
   return (
-    <View style={styles.container}>
+    <Animated.View style={styles.container} entering={FadeInDown.duration(200)}>
       <ImageBackground source={WALLET_PATTERNS_BG} contentFit="cover">
         <View style={styles.walletDetailsContainer}>
           <View style={styles.cardExpiryContainer}>
@@ -37,7 +38,7 @@ const WalletDetailsContainer = ({ cardExpiry, balance }: WalletDetailsContainerP
           </View>
         </View>
       </ImageBackground>
-    </View>
+    </Animated.View>
   );
 };
 
