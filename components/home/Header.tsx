@@ -1,8 +1,9 @@
 import { COLORS } from '@/constants/colors.constants';
+import { DEFAULT_STYLES } from '@/constants/styles.constants';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 const HomeScreenHeader = () => {
   return (
@@ -16,10 +17,10 @@ const HomeScreenHeader = () => {
           <Text style={styles.emailText}>momon@hatypo.studio</Text>
         </View>
       </View>
-      <View style={styles.iconContainer}>
+      <Pressable style={({ pressed }) => [styles.iconContainer, pressed && DEFAULT_STYLES.pressed]}>
         <Ionicons name="notifications-outline" size={25} color="#FFFFFF" />
         <View style={styles.notificationIndicator}></View>
-      </View>
+      </Pressable>
     </View>
   );
 };

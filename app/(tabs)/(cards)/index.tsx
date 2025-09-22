@@ -1,6 +1,7 @@
 import Card from '@/components/cards/Card';
 import WalletBalanceText from '@/components/home/WalletBalanceText';
 import { COLORS } from '@/constants/colors.constants';
+import { DEFAULT_STYLES } from '@/constants/styles.constants';
 import { CARD } from '@/data/card.data';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
@@ -25,7 +26,10 @@ const CardDetailsScreen = () => {
         </Animated.View>
       </View>
       <View style={styles.addCardBtnContainer}>
-        <Pressable style={styles.addCardBtn} onPress={onAddNewCard}>
+        <Pressable
+          style={({ pressed }) => [styles.addCardBtn, pressed && DEFAULT_STYLES.pressed]}
+          onPress={onAddNewCard}
+        >
           <Ionicons name="add" size={25} color={COLORS.dark.yellow} />
           <Text style={styles.addCardBtnText}>Add New Card</Text>
         </Pressable>

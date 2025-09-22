@@ -1,4 +1,5 @@
 import { COLORS } from '@/constants/colors.constants';
+import { DEFAULT_STYLES } from '@/constants/styles.constants';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import React from 'react';
@@ -31,15 +32,25 @@ const ScreenHeader = ({
   return (
     <View style={styles.container}>
       <Pressable
-        style={[styles.headerIconContainer, !showBackBtn && styles.hiddenBtn]}
+        style={({ pressed }) => [
+          styles.headerIconContainer,
+          !showBackBtn && styles.hiddenBtn,
+          pressed && DEFAULT_STYLES.pressed,
+        ]}
         onPress={onBack}
       >
         <Ionicons name="chevron-back" size={22} color="#FFFFFF" />
       </Pressable>
       <Text style={styles.headerTitleText}>{pageTitle}</Text>
-      <View style={[styles.headerIconContainer, !showOptionsBtn && styles.hiddenBtn]}>
+      <Pressable
+        style={({ pressed }) => [
+          styles.headerIconContainer,
+          !showOptionsBtn && styles.hiddenBtn,
+          pressed && DEFAULT_STYLES.pressed,
+        ]}
+      >
         <Ionicons name="ellipsis-vertical" size={20} color="#FFFFFF" />
-      </View>
+      </Pressable>
     </View>
   );
 };
