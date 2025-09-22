@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   addCardBtnContainer: {
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: 10,
     padding: 5,
   },
   addCardBtn: {

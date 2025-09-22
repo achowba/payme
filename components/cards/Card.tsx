@@ -6,6 +6,7 @@ import { splitCardNumber } from '@/utils/array.utils';
 import { Image, ImageBackground } from 'expo-image';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import CardNumberItem from './CardNumberItem';
 
 type CardProps = {
   cardDetails: ICard;
@@ -33,10 +34,9 @@ const Card = ({ cardDetails }: CardProps) => {
               </Text>
             </View>
             <View style={styles.numberTextContainer}>
-              <Text style={[DEFAULT_STYLES.text, styles.numberText]}>{numberTexts[0]}</Text>
-              <Text style={[DEFAULT_STYLES.text, styles.numberText]}>{numberTexts[1]}</Text>
-              <Text style={[DEFAULT_STYLES.text, styles.numberText]}>{numberTexts[2]}</Text>
-              <Text style={[DEFAULT_STYLES.text, styles.numberText]}>{numberTexts[3]}</Text>
+              {numberTexts.map((num, index) => (
+                <CardNumberItem key={index} number={parseInt(num)} />
+              ))}
             </View>
             <View style={styles.categoryContainer}>
               <Text style={[DEFAULT_STYLES.text, styles.categoryText]}>{cardDetails.category}</Text>
@@ -75,8 +75,8 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   holderNameContainer: {
-    marginTop: 70,
     marginBottom: 15,
+    marginTop: 70,
   },
   holderNameText: {
     fontSize: 18,
