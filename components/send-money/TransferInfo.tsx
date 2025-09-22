@@ -31,10 +31,12 @@ const TransferInfo = ({
 
   return (
     <View style={styles.infoContainer}>
-      <ImageBackground style={styles.balanceContainer} source={WALLET_PATTERNS_BG}>
-        <Text style={[styles.text, styles.balanceLabelText]}>Wallet Balance</Text>
-        <WalletBalanceText balance={walletBalance} initialDisplayValue={initialDisplayValue} />
-      </ImageBackground>
+      <View style={styles.backgroundContainer}>
+        <ImageBackground style={styles.balanceContainer} source={WALLET_PATTERNS_BG}>
+          <Text style={[styles.text, styles.balanceLabelText]}>Wallet Balance</Text>
+          <WalletBalanceText balance={walletBalance} initialDisplayValue={initialDisplayValue} />
+        </ImageBackground>
+      </View>
       <View style={styles.selectedContactContainer}>
         <View style={styles.selectedContactInfoContainer}>
           <View style={styles.imageContainer}>
@@ -72,6 +74,9 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     marginBottom: 20,
     padding: 10,
+  },
+  backgroundContainer: {
+    overflow: 'hidden',
   },
   balanceContainer: {
     alignItems: 'center',

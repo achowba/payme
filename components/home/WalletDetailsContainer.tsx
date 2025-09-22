@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#703EDD',
     borderRadius: 20,
     marginBottom: 20,
+    overflow: 'hidden',
   },
   walletDetailsContainer: {
     padding: 20,
