@@ -1,4 +1,4 @@
-import SendMoneyScreenHeader from '@/components/send-money/Header';
+import ScreenHeader from '@/components/ui/ScreenHeader';
 import { COLORS } from '@/constants/colors.constants';
 import { SelectContactProvider } from '@/store/SelectContactContext';
 import { Stack } from 'expo-router';
@@ -11,27 +11,25 @@ const SendMoneyLayout = () => {
         initialRouteName="index"
         screenOptions={{
           headerShown: true,
-          contentStyle: {
-            backgroundColor: COLORS.dark.primary,
-          },
+          contentStyle: styles.content,
         }}
       >
         <Stack.Screen
           name="index"
           options={{
-            header: () => <SendMoneyScreenHeader pageTitle="Send" />,
+            header: () => <ScreenHeader pageTitle="Send" />,
           }}
         />
         <Stack.Screen
           name="set-amount"
           options={{
-            header: () => <SendMoneyScreenHeader pageTitle="Send" />,
+            header: () => <ScreenHeader pageTitle="Send" />,
           }}
         />
         <Stack.Screen
           name="sending"
           options={{
-            header: () => <SendMoneyScreenHeader pageTitle="Sending" />,
+            header: () => <ScreenHeader pageTitle="Sending" />,
           }}
         />
       </Stack>
@@ -39,6 +37,10 @@ const SendMoneyLayout = () => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  content: {
+    backgroundColor: COLORS.dark.primary,
+  },
+});
 
 export default SendMoneyLayout;

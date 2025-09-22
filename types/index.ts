@@ -18,3 +18,13 @@ export interface IContact {
   lastName: string;
   photo: ImageSourcePropType | string;
 }
+
+
+export interface ICard {
+  id: string;
+  expiry: string;
+  holderName: string;
+  number: string;
+  provider: 'Mastercard' | 'Visa';
+  category: string;
+}

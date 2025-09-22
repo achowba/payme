@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   backHomeBtnContainer: {
     alignItems: 'center',
-    bottom: 10,
+    bottom: 3,
     left: 0,
     padding: 10,
     position: 'absolute',

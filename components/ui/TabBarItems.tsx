@@ -2,6 +2,7 @@ import { COLORS } from '@/constants/colors.constants';
 import { Ionicons, MaterialIcons, Octicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import HomeScreenHeader from '../home/Header';
+import ScreenHeader from './ScreenHeader';
 import TabBarIcon from './TabBarIcon';
 
 export const TabBarItems = [
@@ -21,7 +22,10 @@ export const TabBarItems = [
     name="statistics"
     key="statistics"
     options={{
-      headerShown: false,
+      headerShown: true,
+      header: () => (
+        <ScreenHeader pageTitle="Statistics" showBackBtn={false} showOptionsBtn={false} />
+      ),
       tabBarIcon: ({ focused }) => (
         <TabBarIcon focused={focused}>
           <MaterialIcons
@@ -53,7 +57,8 @@ export const TabBarItems = [
     name="profile"
     key="profile"
     options={{
-      headerShown: false,
+      headerShown: true,
+      header: () => <ScreenHeader pageTitle="Profile" showBackBtn={false} showOptionsBtn={false} />,
       tabBarIcon: ({ focused }) => (
         <TabBarIcon focused={focused}>
           <MaterialIcons

@@ -4,12 +4,19 @@ import { useRouter } from 'expo-router';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-type SendMoneyScreenHeaderProps = {
+type ScreenHeaderProps = {
   pageTitle: string;
   onBackPress?: () => void;
+  showBackBtn?: boolean;
+  showOptionsBtn?: boolean;
 };
 
-const SendMoneyScreenHeader = ({ pageTitle, onBackPress }: SendMoneyScreenHeaderProps) => {
+const ScreenHeader = ({
+  pageTitle,
+  onBackPress,
+  showBackBtn = true,
+  showOptionsBtn = true,
+}: ScreenHeaderProps) => {
   const router = useRouter();
 
   const onBack = () => {
@@ -23,11 +30,14 @@ const SendMoneyScreenHeader = ({ pageTitle, onBackPress }: SendMoneyScreenHeader
 
   return (
     <View style={styles.container}>
-      <Pressable style={styles.headerIconContainer} onPress={onBack}>
+      <Pressable
+        style={[styles.headerIconContainer, !showBackBtn && styles.hiddenBtn]}
+        onPress={onBack}
+      >
         <Ionicons name="chevron-back" size={22} color="#FFFFFF" />
       </Pressable>
       <Text style={styles.headerTitleText}>{pageTitle}</Text>
-      <View style={styles.headerIconContainer}>
+      <View style={[styles.headerIconContainer, !showOptionsBtn && styles.hiddenBtn]}>
         <Ionicons name="ellipsis-vertical" size={20} color="#FFFFFF" />
       </View>
     </View>
@@ -51,12 +61,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 5,
     width: 50,
+    alignContent: 'center',
   },
   headerTitleText: {
     color: '#FFFFFF',
     fontSize: 28,
     fontWeight: '600',
   },
+  hiddenBtn: {
+    opacity: 0,
+  },
 });
 
-export default SendMoneyScreenHeader;
+export default ScreenHeader;

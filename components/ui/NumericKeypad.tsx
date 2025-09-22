@@ -1,3 +1,4 @@
+import { COLORS } from '@/constants/colors.constants';
 import { DEFAULT_STYLES } from '@/constants/styles.constants';
 import { Ionicons } from '@expo/vector-icons';
 import React, { FC } from 'react';
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     aspectRatio: 1 / 0.8,
-    backgroundColor: '#222222',
+    backgroundColor: COLORS.dark.secondary,
     borderRadius: 20,
     justifyContent: 'center',
     margin: '1.5%',

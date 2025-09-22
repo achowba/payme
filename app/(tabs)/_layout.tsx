@@ -1,4 +1,5 @@
 import { TabBarItems } from '@/components/ui/TabBarItems';
+import { COLORS } from '@/constants/colors.constants';
 import { Tabs } from 'expo-router';
 
 export const unstable_settings = {
@@ -17,6 +18,9 @@ const TabsLayout = () => {
           borderTopColor: 'transparent',
           height: 100,
           paddingTop: 25,
+        },
+        sceneStyle: {
+          backgroundColor: COLORS.dark.primary,
         },
       }}
     >

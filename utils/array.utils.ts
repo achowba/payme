@@ -11,3 +11,21 @@ export const getRandomElementsFromArray = (array: any[], maximumItemsToShow: num
 
   return array.slice(startingIndex, startingIndex + maxVisibleItems);
 }
+
+export const splitCardNumber = (cardNumber: string) => {
+  // Remove non-digit characters and ensure string input
+  const cleanNumber = String(cardNumber).replace(/\D/g, '');
+
+  // Validate length
+  if (cleanNumber.length !== 16) {
+    throw new Error('Card number must be 16 digits');
+  }
+
+  // Return array of 4 groups of 4 digits
+  return [
+    cleanNumber.slice(0, 4),
+    cleanNumber.slice(4, 8),
+    cleanNumber.slice(8, 12),
+    cleanNumber.slice(12, 16)
+  ];
+}

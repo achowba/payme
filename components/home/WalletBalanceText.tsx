@@ -1,18 +1,19 @@
 import { COLORS } from '@/constants/colors.constants';
+import { WALLET_BALANCE } from '@/constants/money.constants';
 import { calculatePowerOfTen } from '@/utils/number.utils';
 import React from 'react';
 import { StyleSheet, Text, TextStyle, View } from 'react-native';
 import { CountUp } from 'use-count-up';
 
 type WalletBalanceTextProps = {
-  balance: number;
+  balance?: number;
   initialDisplayValue?: number;
   balanceTextLargeStyle?: TextStyle | TextStyle[];
   balanceTextSmallStyle?: TextStyle | TextStyle[];
 };
 
 const WalletBalanceText = ({
-  balance,
+  balance = WALLET_BALANCE,
   initialDisplayValue,
   balanceTextLargeStyle,
   balanceTextSmallStyle,

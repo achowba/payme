@@ -1,3 +1,4 @@
+import { COLORS } from '@/constants/colors.constants';
 import { DEFAULT_STYLES } from '@/constants/styles.constants';
 import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   imageContainer: {
-    backgroundColor: '#222222',
+    backgroundColor: COLORS.dark.secondary,
   },
   textContainer: {
     alignItems: 'center',
