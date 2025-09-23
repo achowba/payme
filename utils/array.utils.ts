@@ -29,3 +29,7 @@ export const splitCardNumber = (cardNumber: string) => {
     cleanNumber.slice(12, 16)
   ];
 }
+
+export const shuffleArray = (array: any[]) => {
+  return array.sort(() => 0.5 - Math.random());
+}

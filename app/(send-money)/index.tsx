@@ -1,4 +1,5 @@
 import ContactList from '@/components/send-money/ContactList';
+import Loader from '@/components/ui/Loader';
 import { COLORS } from '@/constants/colors.constants';
 import { DEFAULT_STYLES } from '@/constants/styles.constants';
 import { CONTACTS } from '@/data/contact.data';
@@ -8,15 +9,7 @@ import { Feather, Ionicons, Octicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import {
-  ActivityIndicator,
-  Dimensions,
-  Pressable,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import { Dimensions, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
 const width = Dimensions.get('window').width;
 
@@ -78,7 +71,7 @@ const SelectContact = () => {
         </View>
         {isLoadingContacts ? (
           <View style={styles.loadingContainer}>
-            <ActivityIndicator size="large" />
+            <Loader />
           </View>
         ) : (
           <ContactList contacts={contacts} numberOfFrequentlyAccessedContactsToShow={4} />
@@ -164,9 +157,6 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   loadingContainer: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
     padding: 70,
   },
   destinationsContainer: {

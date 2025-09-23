@@ -17,7 +17,7 @@ export const DEFAULT_STYLES = StyleSheet.create({
     marginBottom: 20,
   },
   transferStatusDescriptionText: {
-    color: '#797979',
+    color: '#AAAAAA',
     fontSize: 16,
     fontWeight: '400',
   },

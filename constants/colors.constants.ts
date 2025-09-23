@@ -5,7 +5,7 @@ export const COLORS = {
     purple: '#703EDD',
     yellow: '#FFD100',
     tab: {
-      inactive: '#797979'
+      inactive: '#AAAAAA'
     },
     text: '#000000'
   },
@@ -15,7 +15,7 @@ export const COLORS = {
     purple: '#703EDD',
     yellow: '#FFD100',
     tab: {
-      inactive: '#797979'
+      inactive: '#AAAAAA'
     },
     text: '#FFFFFF'
   },

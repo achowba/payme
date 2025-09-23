@@ -1,13 +1,16 @@
 import NewCardItem from '@/components/cards/NewCardItem';
 import { CARD_TYPES } from '@/data/card.data';
+import { shuffleArray } from '@/utils/array.utils';
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 
 const AddCardScreen = () => {
+  const suffledCardTypes = shuffleArray(CARD_TYPES);
+
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.cardTypesContainer}>
-        {CARD_TYPES.map((cardType) => (
+        {suffledCardTypes.map((cardType) => (
           <NewCardItem key={cardType.id} cardType={cardType} />
         ))}
       </View>

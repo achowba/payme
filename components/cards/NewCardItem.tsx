@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   descriptionText: {
-    color: '#797979',
+    color: '#AAAAAA',
     fontSize: 17,
     fontWeight: '400',
   },
