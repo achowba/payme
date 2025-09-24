@@ -1,11 +1,16 @@
 import { COLORS } from '@/constants/colors.constants';
 import { DEFAULT_STYLES } from '@/constants/styles.constants';
+import { CONTACTS } from '@/data/contact.data';
+import { IContact } from '@/types';
+import { getRandomElementsFromArray } from '@/utils/array.utils';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 const HomeScreenHeader = () => {
+  const user: IContact = getRandomElementsFromArray(CONTACTS, 1)[0]; // Simulated user data
+
   return (
     <View style={styles.container}>
       <View style={styles.profileContainer}>
@@ -13,8 +18,8 @@ const HomeScreenHeader = () => {
           <Image style={styles.image} source={{ uri: 'https://avatar.iran.liara.run/public' }} />
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.nameText}>Hi, Momon!</Text>
-          <Text style={styles.emailText}>momon@hatypo.studio</Text>
+          <Text style={styles.nameText}>Hi, {user.firstName}!</Text>
+          <Text style={styles.emailText}>{user.email}</Text>
         </View>
       </View>
       <Pressable style={({ pressed }) => [styles.iconContainer, pressed && DEFAULT_STYLES.pressed]}>
