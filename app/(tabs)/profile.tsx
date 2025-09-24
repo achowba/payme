@@ -1,17 +1,18 @@
+import SettingsItemWithIcon from '@/components/profile/SettingsItemWithIcon';
+import SettingsItemWithImage from '@/components/profile/SettingsItemWithImage';
 import ToggleButton from '@/components/ui/ToggleButton';
 import { COLORS } from '@/constants/colors.constants';
 import { DEFAULT_STYLES } from '@/constants/styles.constants';
 import { CONTACTS } from '@/data/contact.data';
 import { IContact } from '@/types';
 import { getRandomElementsFromArray } from '@/utils/array.utils';
-import { AntDesign, Ionicons, MaterialCommunityIcons, Octicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { resolveSource } from '../../utils/assets.utils';
 
 const ProfileScreen = () => {
-  const user: IContact = getRandomElementsFromArray(CONTACTS, 1)[0];
+  const user: IContact = getRandomElementsFromArray(CONTACTS, 1)[0]; // Simulated user data
 
   const [isFaceIDEnabled, setIsFaceIDEnabled] = useState(false);
   const [isNotificationEnabled, setIsNotificationEnabled] = useState(true);
@@ -20,7 +21,7 @@ const ProfileScreen = () => {
   const toggleNotificationSwitch = () => setIsNotificationEnabled(!isNotificationEnabled);
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.profileInfoContainer}>
         <View style={styles.imageContainer}>
           <Image style={styles.image} source={resolveSource(user.photo)} />
@@ -29,59 +30,40 @@ const ProfileScreen = () => {
         <Text style={styles.emailText}>{user.email}</Text>
       </View>
       <View style={styles.settingsContainer}>
-        <View style={styles.settingItemContainer}>
-          <View style={styles.settingIconContainer}>
-            <MaterialCommunityIcons name="account-edit-outline" size={26} color="#FFFFFF" />
-          </View>
-          <Text style={styles.settingText}>Account</Text>
-        </View>
-        <View style={styles.settingItemContainer}>
-          <View style={styles.settingIconContainer}>
-            <Octicons name="key" size={20} color="#FFFFFF" />
-          </View>
-          <Text style={styles.settingText}>Password</Text>
-        </View>
-        <View style={styles.settingItemContainer}>
-          <View style={styles.settingIconContainer}>
-            <Image
-              style={styles.settingImage}
-              source={require('@/assets/images/icons/translation.png')}
-            />
-          </View>
-          <Text style={styles.settingText}>Languages</Text>
-        </View>
-        <View style={[styles.settingItemContainer, styles.settingToggleContainer]}>
-          <View style={styles.settingItemContainer}>
-            <View style={styles.settingIconContainer}>
-              <Ionicons name="notifications-outline" size={24} color="#FFFFFF" />
-            </View>
-            <Text style={styles.settingText}>Notification</Text>
-          </View>
+        <SettingsItemWithIcon
+          title="Account"
+          iconType="MaterialCommunityIcons"
+          iconName="account-edit-outline"
+        />
+        <SettingsItemWithIcon title="Password" iconType="Octicons" iconName="key" iconSize={20} />
+        <SettingsItemWithImage
+          title="Languages"
+          imageSource={require('@/assets/images/icons/translation.png')}
+        />
+        <View style={styles.settingToggleContainer}>
+          <SettingsItemWithIcon
+            title="Notification"
+            iconType="Ionicons"
+            iconName="notifications-outline"
+            iconSize={24}
+          />
           <ToggleButton isOn={isNotificationEnabled} onToggle={toggleNotificationSwitch} />
         </View>
-        <View style={[styles.settingItemContainer, styles.settingToggleContainer]}>
-          <View style={styles.settingItemContainer}>
-            <View style={styles.settingIconContainer}>
-              <Image
-                style={[styles.settingImage, { width: 25 }]}
-                source={require('@/assets/images/icons/face-id.png')}
-              />
-            </View>
-            <Text style={styles.settingText}>Face ID</Text>
-          </View>
+        <View style={styles.settingToggleContainer}>
+          <SettingsItemWithImage
+            title="Face ID"
+            imageSource={require('@/assets/images/icons/face-id.png')}
+            imageStyle={{ width: 25 }}
+          />
           <ToggleButton isOn={isFaceIDEnabled} onToggle={toggleFaceIDSwitch} />
         </View>
-        <View style={styles.settingItemContainer}>
-          <View style={styles.settingIconContainer}>
-            <AntDesign
-              style={{ transform: [{ rotate: '180deg' }] }}
-              name="info-circle"
-              size={24}
-              color="#FFFFFF"
-            />
-          </View>
-          <Text style={styles.settingText}>App Information</Text>
-        </View>
+        <SettingsItemWithIcon
+          title="App Information"
+          iconType="AntDesign"
+          iconName="info-circle"
+          iconSize={24}
+          iconStyle={{ transform: [{ rotate: '180deg' }] }}
+        />
       </View>
       <Pressable
         style={({ pressed }) => [styles.signOutBtn, pressed && DEFAULT_STYLES.pressed]}
@@ -89,7 +71,7 @@ const ProfileScreen = () => {
       >
         <Text style={styles.signOutBtnText}>Sign Out</Text>
       </Pressable>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -129,30 +111,10 @@ const styles = StyleSheet.create({
     gap: 20,
     padding: 20,
   },
-  settingItemContainer: {
+  settingToggleContainer: {
     alignItems: 'center',
     flexDirection: 'row',
     gap: 20,
-  },
-  settingIconContainer: {
-    alignItems: 'center',
-    aspectRatio: 1,
-    backgroundColor: '#343434',
-    borderRadius: 100,
-    justifyContent: 'center',
-    width: 42,
-    padding: 0,
-  },
-  settingImage: {
-    aspectRatio: 1,
-    width: 20,
-  },
-  settingText: {
-    ...DEFAULT_STYLES.text,
-    fontSize: 22,
-    fontWeight: '500',
-  },
-  settingToggleContainer: {
     justifyContent: 'space-between',
   },
   signOutBtn: {

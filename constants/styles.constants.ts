@@ -28,5 +28,24 @@ export const DEFAULT_STYLES = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 40,
     width: 120,
-  }
+  },
+  settingItemContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 20,
+  },
+  settingIconContainer: {
+    alignItems: 'center',
+    aspectRatio: 1,
+    backgroundColor: '#343434',
+    borderRadius: 100,
+    justifyContent: 'center',
+    width: 42,
+    padding: 0,
+  },
+  settingText: {
+    color: COLORS.dark.text,
+    fontSize: 22,
+    fontWeight: '500',
+  },
 });
