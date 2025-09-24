@@ -1,3 +1,4 @@
+import ProfileInfo from '@/components/profile/ProfileInfo';
 import SettingsItemWithIcon from '@/components/profile/SettingsItemWithIcon';
 import SettingsItemWithImage from '@/components/profile/SettingsItemWithImage';
 import ToggleButton from '@/components/ui/ToggleButton';
@@ -6,10 +7,8 @@ import { DEFAULT_STYLES } from '@/constants/styles.constants';
 import { CONTACTS } from '@/data/contact.data';
 import { IContact } from '@/types';
 import { getRandomElementsFromArray } from '@/utils/array.utils';
-import { Image } from 'expo-image';
 import React, { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { resolveSource } from '../../utils/assets.utils';
 
 const ProfileScreen = () => {
   const user: IContact = getRandomElementsFromArray(CONTACTS, 1)[0]; // Simulated user data
@@ -22,13 +21,7 @@ const ProfileScreen = () => {
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <View style={styles.profileInfoContainer}>
-        <View style={styles.imageContainer}>
-          <Image style={styles.image} source={resolveSource(user.photo)} />
-        </View>
-        <Text style={styles.nameText}>{user.firstName}</Text>
-        <Text style={styles.emailText}>{user.email}</Text>
-      </View>
+      <ProfileInfo user={user} />
       <View style={styles.settingsContainer}>
         <SettingsItemWithIcon
           title="Account"
@@ -78,32 +71,6 @@ const ProfileScreen = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 5,
-  },
-  profileInfoContainer: {
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  imageContainer: {
-    aspectRatio: 1,
-    borderRadius: 50,
-    marginBottom: 20,
-    overflow: 'hidden',
-    width: 90,
-  },
-  image: {
-    height: '100%',
-    width: '100%',
-  },
-  nameText: {
-    ...DEFAULT_STYLES.text,
-    fontSize: 25,
-    fontWeight: '600',
-    marginBottom: 8,
-  },
-  emailText: {
-    ...DEFAULT_STYLES.text,
-    color: '#AAAAAA',
-    fontSize: 17,
   },
   settingsContainer: {
     backgroundColor: COLORS.dark.secondary,
