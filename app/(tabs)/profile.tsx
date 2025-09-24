@@ -1,16 +1,23 @@
+import ToggleButton from '@/components/ui/ToggleButton';
 import { COLORS } from '@/constants/colors.constants';
 import { DEFAULT_STYLES } from '@/constants/styles.constants';
 import { CONTACTS } from '@/data/contact.data';
 import { IContact } from '@/types';
 import { getRandomElementsFromArray } from '@/utils/array.utils';
-import { Ionicons } from '@expo/vector-icons';
+import { AntDesign, Ionicons, MaterialCommunityIcons, Octicons } from '@expo/vector-icons';
 import { Image } from 'expo-image';
-import React from 'react';
+import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { resolveSource } from '../../utils/assets.utils';
 
 const ProfileScreen = () => {
   const user: IContact = getRandomElementsFromArray(CONTACTS, 1)[0];
+
+  const [isFaceIDEnabled, setIsFaceIDEnabled] = useState(false);
+  const [isNotificationEnabled, setIsNotificationEnabled] = useState(true);
+
+  const toggleFaceIDSwitch = () => setIsFaceIDEnabled(!isFaceIDEnabled);
+  const toggleNotificationSwitch = () => setIsNotificationEnabled(!isNotificationEnabled);
 
   return (
     <View style={styles.container}>
@@ -24,42 +31,62 @@ const ProfileScreen = () => {
       <View style={styles.settingsContainer}>
         <View style={styles.settingItemContainer}>
           <View style={styles.settingIconContainer}>
-            <Ionicons name="person" size={24} color="#FFFFFF" />
+            <MaterialCommunityIcons name="account-edit-outline" size={26} color="#FFFFFF" />
           </View>
           <Text style={styles.settingText}>Account</Text>
         </View>
         <View style={styles.settingItemContainer}>
           <View style={styles.settingIconContainer}>
-            <Ionicons name="person" size={24} color="#FFFFFF" />
+            <Octicons name="key" size={20} color="#FFFFFF" />
           </View>
           <Text style={styles.settingText}>Password</Text>
         </View>
         <View style={styles.settingItemContainer}>
           <View style={styles.settingIconContainer}>
-            <Ionicons name="person" size={24} color="#FFFFFF" />
+            <Image
+              style={styles.settingImage}
+              source={require('@/assets/images/icons/translation.png')}
+            />
           </View>
           <Text style={styles.settingText}>Languages</Text>
         </View>
-        <View style={styles.settingToggleContainer}>
-          <View style={styles.settingIconContainer}>
-            <Ionicons name="person" size={24} color="#FFFFFF" />
+        <View style={[styles.settingItemContainer, styles.settingToggleContainer]}>
+          <View style={styles.settingItemContainer}>
+            <View style={styles.settingIconContainer}>
+              <Ionicons name="notifications-outline" size={24} color="#FFFFFF" />
+            </View>
+            <Text style={styles.settingText}>Notification</Text>
           </View>
-          <Text style={styles.settingText}>Notification</Text>
+          <ToggleButton isOn={isNotificationEnabled} onToggle={toggleNotificationSwitch} />
         </View>
-        <View style={styles.settingToggleContainer}>
-          <View style={styles.settingIconContainer}>
-            <Ionicons name="person" size={24} color="#FFFFFF" />
+        <View style={[styles.settingItemContainer, styles.settingToggleContainer]}>
+          <View style={styles.settingItemContainer}>
+            <View style={styles.settingIconContainer}>
+              <Image
+                style={[styles.settingImage, { width: 25 }]}
+                source={require('@/assets/images/icons/face-id.png')}
+              />
+            </View>
+            <Text style={styles.settingText}>Face ID</Text>
           </View>
-          <Text style={styles.settingText}>Face ID</Text>
+          <ToggleButton isOn={isFaceIDEnabled} onToggle={toggleFaceIDSwitch} />
         </View>
         <View style={styles.settingItemContainer}>
           <View style={styles.settingIconContainer}>
-            <Ionicons name="person" size={24} color="#FFFFFF" />
+            <AntDesign
+              style={{ transform: [{ rotate: '180deg' }] }}
+              name="info-circle"
+              size={24}
+              color="#FFFFFF"
+            />
           </View>
           <Text style={styles.settingText}>App Information</Text>
         </View>
       </View>
-      <Pressable style={styles.signOutBtn} onPress={() => alert('Sign Out')}>
+      <Pressable
+        style={({ pressed }) => [styles.signOutBtn, pressed && DEFAULT_STYLES.pressed]}
+        onPress={() => alert('You signed Out')}
+      >
         <Text style={styles.signOutBtnText}>Sign Out</Text>
       </Pressable>
     </View>
@@ -99,36 +126,47 @@ const styles = StyleSheet.create({
   settingsContainer: {
     backgroundColor: COLORS.dark.secondary,
     borderRadius: 30,
-    gap: 10,
+    gap: 20,
     padding: 20,
   },
   settingItemContainer: {
     alignItems: 'center',
     flexDirection: 'row',
-    gap: 15,
-    marginBottom: 10,
+    gap: 20,
   },
-  settingIconContainer: {},
+  settingIconContainer: {
+    alignItems: 'center',
+    aspectRatio: 1,
+    backgroundColor: '#343434',
+    borderRadius: 100,
+    justifyContent: 'center',
+    width: 42,
+    padding: 0,
+  },
+  settingImage: {
+    aspectRatio: 1,
+    width: 20,
+  },
   settingText: {
     ...DEFAULT_STYLES.text,
+    fontSize: 22,
+    fontWeight: '500',
   },
   settingToggleContainer: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    gap: 15,
-    marginBottom: 10,
+    justifyContent: 'space-between',
   },
   signOutBtn: {
     alignItems: 'center',
     backgroundColor: COLORS.dark.secondary,
     borderRadius: 30,
-    marginTop: 30,
+    marginTop: 20,
     padding: 15,
-    paddingVertical: 20,
+    paddingVertical: 22,
   },
   signOutBtnText: {
     color: COLORS.dark.yellow,
     fontSize: 18,
+    fontWeight: '500',
   },
 });
 

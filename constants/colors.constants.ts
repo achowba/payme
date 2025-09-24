@@ -7,7 +7,11 @@ export const COLORS = {
     tab: {
       inactive: '#AAAAAA'
     },
-    text: '#000000'
+    text: '#000000',
+    toggle: {
+      on: '#703EDD',
+      off: '#3e3e3e'
+    }
   },
   dark: {
     primary: '#1B1B1B',
@@ -17,6 +21,10 @@ export const COLORS = {
     tab: {
       inactive: '#AAAAAA'
     },
-    text: '#FFFFFF'
+    text: '#FFFFFF',
+    toggle: {
+      on: '#703EDD',
+      off: '#3e3e3e'
+    }
   },
 }

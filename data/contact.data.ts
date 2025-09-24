@@ -102,9 +102,9 @@ export const CONTACTS: IContact[] = [
   },
   {
     id: '68ca34835b87c220e5032623',
-    firstName: 'Delilah',
+    firstName: 'Amanda',
     lastName: 'Robinson',
-    email: 'delilah.robinson@test.com',
+    email: 'amanda.robinson@test.com',
     photo: `https://avatar.iran.liara.run/public/${getRandomNumber()}`,
   },
   {
