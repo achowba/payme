@@ -17,7 +17,8 @@ const ContactList = ({
 }: ContactListProps) => {
   const recentlyAccessedContacts = getRandomElementsFromArray(
     contacts,
-    numberOfFrequentlyAccessedContactsToShow
+    numberOfFrequentlyAccessedContactsToShow,
+    { includeFirstElement: false }
   );
 
   const gap = numberOfFrequentlyAccessedContactsToShow > 2 ? 10 : 5;

@@ -22,7 +22,7 @@ const TransactionsList = ({
   return (
     <FlatList
       data={filteredTransactions}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item, index) => `${item.id}-${index}`}
       renderItem={renderTransactionItem}
       nestedScrollEnabled
       scrollEnabled={false}

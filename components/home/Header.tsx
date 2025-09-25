@@ -9,7 +9,7 @@ import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 const HomeScreenHeader = () => {
-  const user: IContact = getRandomElementsFromArray(CONTACTS, 1)[0]; // Simulated user data
+  const user: IContact = getRandomElementsFromArray(CONTACTS, 1, { includeFirstElement: false })[0]; // Simulated user data
 
   return (
     <View style={styles.container}>

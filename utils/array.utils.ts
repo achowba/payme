@@ -1,4 +1,4 @@
-export const getRandomElementsFromArray = (array: any[], maximumItemsToShow: number) => {
+export const getRandomElementsFromArray = (array: any[], maximumItemsToShow: number, option = { includeFirstElement: true }) => {
   if (!array.length || !maximumItemsToShow) {
     return array;
   }
@@ -9,7 +9,14 @@ export const getRandomElementsFromArray = (array: any[], maximumItemsToShow: num
   const maxStartingIndex = array.length - maxVisibleItems;
   const startingIndex = Math.floor(Math.random() * (maxStartingIndex + 1));
 
-  return array.slice(startingIndex, startingIndex + maxVisibleItems);
+  if (!option.includeFirstElement) {
+    return array.slice(startingIndex, startingIndex + maxVisibleItems);
+  }
+
+  const firstElement = array[0]; // Ensure the first transaction which is Real Madrid is always included, #HalaMadrid 🤍
+
+  const slicedItems = array.slice(startingIndex, startingIndex + maxVisibleItems);
+  return [firstElement, ...slicedItems];
 }
 
 export const splitCardNumber = (cardNumber: string) => {

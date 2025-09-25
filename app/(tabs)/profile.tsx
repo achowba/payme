@@ -11,7 +11,7 @@ import React, { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 const ProfileScreen = () => {
-  const user: IContact = getRandomElementsFromArray(CONTACTS, 1)[0]; // Simulated user data
+  const user: IContact = getRandomElementsFromArray(CONTACTS, 1, { includeFirstElement: false })[0]; // Simulated user data
 
   const [isFaceIDEnabled, setIsFaceIDEnabled] = useState(false);
   const [isNotificationEnabled, setIsNotificationEnabled] = useState(true);
