@@ -2,6 +2,15 @@ import { ITransaction } from "@/types";
 
 export const TRANSACTIONS: ITransaction[] = [
   {
+    id: '68c7009dcac1ff3d420fce89',
+    amount: -92.48,
+    merchant: {
+      name: "Real Madrid",
+      logo: require("@/assets/images/logos/Real-Madrid.svg")
+    },
+    date: new Date("2014-05-24")
+  },
+  {
     id: '68c7009dcac1ff3d420fce60',
     amount: 243,
     merchant: {
@@ -369,15 +378,6 @@ export const TRANSACTIONS: ITransaction[] = [
       logo: require("@/assets/images/logos/polestar.jpeg")
     },
     date: new Date("2023-01-10")
-  },
-  {
-    id: '68c7009dcac1ff3d420fce89',
-    amount: -52,
-    merchant: {
-      name: "Real Madrid",
-      logo: require("@/assets/images/logos/Real-Madrid.svg")
-    },
-    date: new Date("2023-05-14")
   },
   {
     id: '68c7009dcac1ff3d420fce8a',
