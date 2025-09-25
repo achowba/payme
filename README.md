@@ -1,6 +1,16 @@
 # Payme 👋
 
-This is a React Native app designed based on [PayMe](https://dribbble.com/shots/20774179-Payme-Finance-Mobile-App-Detail-Screen) UI on [Dribbble](https://dribbble.com)
+This is a React Native app designed based on [PayMe UI](https://dribbble.com/shots/20774179-Payme-Finance-Mobile-App-Detail-Screen) on [Dribbble](https://dribbble.com)
+
+## Disclaimer
+
+This project is a personal hobby project developed primarily for learning and experimentation. It is not intended for production use.
+
+Please note the following:
+
+- **Educational Purpose:** The code and techniques used here are for educational exploration and may not follow best practices for enterprise-level software.
+
+- **UI Case Study:** The user interface design and its elements were selected specifically as a case study for this project. They are not related to, or based on, any freelance projects or professional client work I have completed. Any resemblance to other UIs is coincidental.
 
 ## Get started
 
@@ -68,3 +78,25 @@ In the output, you'll find options to open the app in a
 ### [Profile Screen](https://dribbble.com/shots/20774179-Payme-Finance-Mobile-App-Detail-Screene)
 
 ![Profile Screen](./screenshots/Profile.png)
+
+## Flaticons Attribution
+
+- [Bank icons created by Those Icons - Flaticon](https://www.flaticon.com/free-icons/bank)
+
+![ ](./assets/images/icons/bank.png)
+
+- [Face id icons created by OwlDsgnr - Flaticon](https://www.flaticon.com/free-icons/face-id)
+
+![ ](./assets/images/icons/face-id.png)
+
+- [Paper plane icons created by J703 - Flaticon](https://www.flaticon.com/free-icons/paper-plane)
+
+![ ](./assets/images/icons/paper-plane.png)
+
+- [Send money icons created by Anggara - Flaticon](https://www.flaticon.com/free-icons/send-money)
+
+![ ](./assets/images/icons/send-money.png)
+
+- [Translation icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/translation)
+
+![ ](./assets/images/icons/translation.png)
