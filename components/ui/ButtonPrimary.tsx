@@ -6,13 +6,19 @@ import { Pressable, StyleSheet, Text } from 'react-native';
 type ButtonPrimaryProps = {
   children: ReactNode;
   onPress?: () => void;
+  disabled?: boolean;
 };
 
-const ButtonPrimary = ({ children, onPress }: ButtonPrimaryProps) => {
+const ButtonPrimary = ({ children, onPress, disabled = false }: ButtonPrimaryProps) => {
   return (
     <Pressable
-      style={({ pressed }) => [styles.button, pressed && DEFAULT_STYLES.pressed]}
+      style={({ pressed }) => [
+        styles.button,
+        pressed && DEFAULT_STYLES.pressed,
+        disabled && DEFAULT_STYLES.disabledBtn,
+      ]}
       onPress={onPress!}
+      disabled={disabled}
     >
       <Text style={styles.buttonText}>{children}</Text>
     </Pressable>

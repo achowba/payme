@@ -65,7 +65,9 @@ const SetAmountScreen = () => {
         entering={FadeInDown.duration(300).delay(500)}
         exiting={SlideInDown.duration(300).delay(500)}
       >
-        <ButtonPrimary onPress={onSendMoney}>Send Money</ButtonPrimary>
+        <ButtonPrimary onPress={onSendMoney} disabled={!amount}>
+          Send Money
+        </ButtonPrimary>
       </Animated.View>
     </View>
   );
