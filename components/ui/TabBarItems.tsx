@@ -23,9 +23,7 @@ export const TabBarItems = [
     key="statistics"
     options={{
       headerShown: true,
-      header: () => (
-        <ScreenHeader pageTitle="Statistics" showBackBtn={false} showOptionsBtn={false} />
-      ),
+      header: () => <ScreenHeader pageTitle="Statistics" showBackBtn={false} showOptionsBtn />,
       tabBarIcon: ({ focused }) => (
         <TabBarIcon focused={focused}>
           <MaterialIcons
