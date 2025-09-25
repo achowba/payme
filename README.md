@@ -30,3 +30,41 @@ In the output, you'll find options to open the app in a
 ![ ](./design/ui-2.webp)
 
 ![ ](./design/ui-3.webp)
+
+## Screenshots
+
+### [Home Screen](https://dribbble.com/shots/20774179-Payme-Finance-Mobile-App-Detail-Screene)
+
+![Home Screen](./screenshots/Home.png)
+
+### [Select Contact Screen](https://dribbble.com/shots/20774179-Payme-Finance-Mobile-App-Detail-Screene)
+
+![Select Contact Screen](./screenshots/Select-Contact.png)
+
+### [Contact Selected Screen](https://dribbble.com/shots/20774179-Payme-Finance-Mobile-App-Detail-Screene)
+
+![Contact Selected Screen](./screenshots/Contact-Selected.png)
+
+### [Money Sending Screen](https://dribbble.com/shots/20774179-Payme-Finance-Mobile-App-Detail-Screene)
+
+![Money Sending Screen](./screenshots/Sending.png)
+
+### [Money Sent Screen](https://dribbble.com/shots/20774179-Payme-Finance-Mobile-App-Detail-Screene)
+
+![Money Sent Screen](./screenshots/Money-Sent.png)
+
+### [Statistics Screen](https://dribbble.com/shots/20774179-Payme-Finance-Mobile-App-Detail-Screene)
+
+![Statistics Screen](./screenshots/Statistics.png)
+
+### [Card Details Screen](https://dribbble.com/shots/20774179-Payme-Finance-Mobile-App-Detail-Screene)
+
+![Card Details Screen](./screenshots/Card-Details.png)
+
+### [Add Card Screen](https://dribbble.com/shots/20774179-Payme-Finance-Mobile-App-Detail-Screene)
+
+![Add Card Details Screen](./screenshots/Add-Card.png)
+
+### [Profile Screen](https://dribbble.com/shots/20774179-Payme-Finance-Mobile-App-Detail-Screene)
+
+![Profile Screen](./screenshots/Profile.png)
